@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+
+{% block title%}BusBook Login{% endblock%}
+
+{% block navblock %}
+<style>
+    body{
+  
+    background: #f6f9fc;
+}
+.form tr{
+    margin-bottom: 100px;
+}
+.account-block {
+    padding: 0;
+    background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+}
+.account-block .overlay {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.account-block .account-testimonial {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+}
+
+.text-theme {
+    color: #5369f8 !important;
+}
+
+.btn-theme {
+    background-color: #5369f8;
+    border-color: #5369f8;
+    color: #fff;
+}
+
+label{
+    display: none;
+    
+}
+#id_username,#id_password{
+    margin-bottom: 30px;
+    width: 350px;
+}
+  
+
+
+
+
+
+</style>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <div id="main-wrapper" class="container my-5 ">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 ">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    {% for message in messages %} 
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          
+            <div class="col-lg-8 mx-auto">
+              <div
+                class="alert alert-success alert-dismissible fade show text-center"
+                role="alert"
+              >
+                <strong></strong>{{message}} 😀
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+            </div>
+            {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+          
+            <div class="col-lg-8 mx-auto">
+              <div
+                class="alert alert-danger alert-dismissible fade show text-center"
+                role="alert"
+              >
+                <strong></strong> {{message}} 😶
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+            </div>
+            {% endif %} 
+            {% endfor %}
+
+
+
+                                    <div class="mb-5">
+                                        <h3 class="h4 font-weight-bold text-theme">Login</h3>
+                                    </div>
+    
+                                    <h6 class="h5 mb-0">Welcome back!</h6>
+                                    <p class="text-muted mt-2 mb-5">Enter your email address and password to book your trip.</p>
+    
+                                    <form method="POST">
+                                        <table class="form col-xl-10">
+                                            {% csrf_token %}
+                                            {{form.as_table}}
+                            
+                                        </table>
+                                      
+                                        <button type="submit" class="btn btn-theme mt-2">Login</button>
+                                    </form>
+                                </div>
+                            </div>
+    
+                            <div class="col-lg-6 d-none d-lg-inline-block">
+                                <div class="account-block rounded-right">
+                                    <div class="overlay rounded-right"></div>
+                                    <div class="account-testimonial">
+                                        <h4 class="text-white mb-4">Making your trip easy and comfortable!</h4>
+                                        
+                                        <p>-BusBook</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+    
+                <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a href="{% url 'bususer:signup'%}" class="text-primary ml-1">register</a></p>
+    
+                <!-- end row -->
+    
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- Row -->
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+       
+        $('#id_username').attr('placeholder','Email')
+        $('#id_password').attr('placeholder','Password')
+  
+    </script>
+
+{% endblock %}
+</body>
+</html>
